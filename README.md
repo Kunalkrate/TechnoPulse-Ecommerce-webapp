@@ -221,12 +221,6 @@ need the message we sent back from our API server...
 
 The same is true for [handling errors from our RTK queries.](https://redux-toolkit.js.org/rtk-query/usage/error-handling)
 
-> Changes can be seen in:-
->
-> - [PlaceOrderScreen.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/screens/PlaceOrderScreen.jsx)
-> - [OrderScreen.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/screens/OrderScreen.jsx)
-> - [ProductEditScreen.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/screens/admin/ProductEditScreen.jsx)
-> - [ProductListScreen.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/screens/admin/ProductListScreen.jsx)
 
 ### BUG: After switching users, our new user gets the previous users cart
 
@@ -238,12 +232,6 @@ and shipping information.
 The solution is to simply clear local storage entirely and so remove the
 **cart**, **userInfo** and **expirationTime**.
 
-> Changes can be seen in:-
->
-> - [authSlice.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/slices/authSlice.js)
-> - [cartSlice.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/slices/cartSlice.js)
-> - [Header.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/components/Header.jsx)
-
 ### BUG: Passing a string value to our `addDecimals` function
 
 Our `addDecimals` function expects a **Number** type as an argument so calling
@@ -252,10 +240,6 @@ It kind of works because JavaScript type coerces the string to a number when we
 try to use mathematic operators on strings. But this is prone to error and can
 be improved.
 
-> Changes can be seen in:
->
-> - [cartUtils.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/utils/cartUtils.js)
-> - [calcPrices.js](https://github.com/bradtraversy/proshop-v2/tree/main/backend/utils/calcPrices.js)
 
 ### BUG: Token and Cookie expiration not handled in frontend
 
@@ -265,9 +249,6 @@ So we have a situation where in the client they can access private routes, but t
 
 The solution is to wrap/customize the RTK [baseQuery](https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#customizing-queries-with-basequery) with our own custom functionality that will log out a user on any 401 response
 
-> Changes can be seein in:
->
-> - [apiSlice.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/slices/apiSlice.js)
 
 Additionally we can remove the following code:
 
@@ -275,9 +256,6 @@ Additionally we can remove the following code:
 const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // 30 days
 localStorage.setItem('expirationTime', expirationTime);
 ```
-
-from our [authSlice.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/slices/authSlice.js) as it's never
-actually used in the project in any way.
 
 ### BUG: Calculation of prices as decimals gives odd results
 
@@ -301,17 +279,12 @@ The solution would be to calculate prices in whole numbers:
 (3 * (89.99 * 100)) / 100; // 269.97
 ```
 
-> Changes can be see in in:
->
-> - [PlaceOrderScreen.jsx](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/screens/PlaceOrderScreen.jsx)
-> - [cartUtils.js](https://github.com/bradtraversy/proshop-v2/tree/main/frontend/src/utils/cartUtils.js)
-> - [calcPrices.js](https://github.com/bradtraversy/proshop-v2/tree/main/backend/utils/calcPrices.js)
 
 ### FAQ: How do I use Vite instead of CRA?
 
 Ok so you're at **Section 1 - Starting The Frontend** in the course and you've
 heard cool things about [Vite](https://vitejs.dev/) and why you should use that
-instead of [Create React App](https://create-react-app.dev/) in 2023.
+instead of [Create React App](https://create-react-app.dev/) 
 
 There are a few differences you need to be aware of using Vite in place of CRA
 here in the course after [scaffolding out your Vite React app](https://github.com/vitejs/vite/tree/main/packages/create-vite#create-vite)
